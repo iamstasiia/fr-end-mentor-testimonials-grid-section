@@ -27,11 +27,12 @@ body {
     align-items: center;
     justify-content: center;
     background: var(--neutral-gray-blue);
+    min-width: 375px;
 }
-    
+
 main {
     max-width: 1440px;
-    margin-bottom: 2rem;
+    margin: 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem 3rem;
@@ -43,7 +44,7 @@ article {
     box-shadow: rgba(80, 80, 80, 0.2) 40px 60px 40px -20px;
     display: grid;
     grid-template-columns: 3rem 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "image name"
     "title title"
     "comment comment";
@@ -54,26 +55,30 @@ article:nth-of-type(1) {
     background: url(./images/bg-pattern-quotation.svg) no-repeat right 20% top var(--prima-violet);
     background-size: 9rem;
     color: var(--prima-white);
-    grid-column: 1/3;
+    /* grid-column: 1/3; */
+    grid-column: 1/span 2;
 }
 
 article:nth-of-type(2) {
     background: var(--prima-grayblue);
     color: var(--prima-white);
-    grid-column: 3/4;
+    /* grid-column: 3/4; */
+    grid-column-start: 3;
 }
 
 article:nth-of-type(3) {
     background: var(--prima-white);
-    grid-column: 1/2;
-    grid-row: 2/3;
+    /* grid-column: 1/2; */
+    /* grid-row: 2/3; */
+    grid-row-start: 2;
 }
 
 article:nth-of-type(4) {
     background: var(--prima-blackblue);
     color: var(--prima-white);
-    grid-column: 2/4;
-    grid-row: 2/3;
+    /* grid-column: 2/4; */
+    /* grid-row: 2/3; */
+    grid-column: 2/span 2;
 }
 
 article:nth-of-type(5) {
@@ -110,4 +115,55 @@ p {
     opacity: 70%;
     grid-area: comment;
     line-height: 1.5rem;
+}
+
+@media screen and (max-width: 1234px) {
+    body {
+        justify-content: flex-start;
+    }
+
+    main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    article:nth-of-type(5) {
+        grid-row-start: 3;
+        grid-column: 1/4;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "user-01 user-01"
+        "user-02 user-03"
+        "user-04 user-04"
+        "user-05 user-05";
+    }
+
+    article:nth-of-type(1) {
+        grid-area: user-01;
+    }
+
+    article:nth-of-type(2) {
+        grid-area: user-02;
+    }
+
+    article:nth-of-type(4) {
+        grid-area: user-04;
+    }
+
+    article:nth-of-type(5) {
+        grid-area: user-05;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        display: block;
+    }
+    
+    article {
+        margin: 1.5rem 0;
+    }
 }
